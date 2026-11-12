@@ -67,3 +67,4 @@ console.log(`Responsive Audit Complete. Passed: ${pass} | Failed: ${fail}`);
 console.log('====================================================');
 
 if (fail > 0) process.exit(1);
+

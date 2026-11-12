@@ -2,7 +2,7 @@
 title Push to GitHub - Afrah Al Jazeera
 echo ======================================================
 echo Pushing Afrah Al Jazeera Auto Spare Parts to GitHub...
-echo Repository: https://github.com/RebinJamshir/aljazeera.git
+echo Repository: https://github.com/RebinJamshir/contact-card.git
 echo ======================================================
 echo.
 
