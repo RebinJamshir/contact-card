@@ -41,15 +41,8 @@ const BUSINESS_CONFIG = {
       international: '+966 55 651 6712',
       clean: '966556516712'
     },
-    // Showroom Landline
-    landline: {
-      raw: '0143900266',
-      display: '014 390 0266',
-      international: '+966 14 390 0266',
-      clean: '966143900266'
-    },
     // Official Email
-    email: 'jazeera@gmail.com',
+    email: 'Jazeera@afraa.business',
     
     // Physical Location
     location: {
@@ -66,7 +59,7 @@ const BUSINESS_CONFIG = {
         latitude: 24.0892,
         longitude: 38.0637
       },
-      googleMapsUrl: 'https://maps.google.com/?q=Yanbu+Manazel+Hotel',
+      googleMapsUrl: 'https://maps.app.goo.gl/J2bkpwRHZwVGFoC48?g_st=aw',
       embedMapUrl: 'https://maps.google.com/maps?q=Yanbu+Manazel+Hotel&t=&z=15&ie=UTF8&iwloc=&output=embed'
     }
   },

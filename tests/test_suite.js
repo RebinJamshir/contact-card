@@ -74,7 +74,8 @@ if (schemaMatch) {
     assert(schemaData['@type'] === 'AutoPartsStore', 'Schema type is AutoPartsStore');
     assert(schemaData.name === 'شركة أفراح الجزيرة لقطع غيار السيارات', 'Schema name matches Arabic business name');
     assert(schemaData.telephone === '+966556516712', 'Schema telephone matches verified mobile');
-    assert(schemaData.email === 'jazeera@gmail.com', 'Schema email matches verified email');
+    assert(schemaData.email === 'Jazeera@afraa.business', 'Schema email matches verified email');
+    assert(schemaData.hasMap === 'https://maps.app.goo.gl/J2bkpwRHZwVGFoC48?g_st=aw', 'Schema hasMap matches exact Google Maps URL');
     assert(schemaData.address && schemaData.address.addressLocality.includes('Yanbu'), 'Schema locality is Yanbu');
     assert(schemaData.geo && schemaData.geo.latitude === 24.0892, 'Schema geo latitude is 24.0892');
     assert(Array.isArray(schemaData.openingHoursSpecification), 'Schema contains openingHoursSpecification array');
@@ -90,8 +91,9 @@ const BUSINESS_CONFIG = require(path.join(ROOT, 'js/config.js'));
 assert(BUSINESS_CONFIG.productionUrl === 'https://afrah-aljazeera.com', 'Config contains productionUrl');
 assert(BUSINESS_CONFIG.contacts.mobile.raw === '+966556516712', 'Config contains mobile +966556516712');
 assert(BUSINESS_CONFIG.contacts.mobile.clean === '966556516712', 'Config contains clean mobile 966556516712');
-assert(BUSINESS_CONFIG.contacts.landline.raw === '0143900266', 'Config contains landline 0143900266');
-assert(BUSINESS_CONFIG.contacts.email === 'jazeera@gmail.com', 'Config contains email jazeera@gmail.com');
+assert(BUSINESS_CONFIG.contacts.landline === undefined, 'Landline is completely removed from config');
+assert(BUSINESS_CONFIG.contacts.email === 'Jazeera@afraa.business', 'Config contains email Jazeera@afraa.business');
+assert(BUSINESS_CONFIG.contacts.location.googleMapsUrl === 'https://maps.app.goo.gl/J2bkpwRHZwVGFoC48?g_st=aw', 'Config contains exact Google Maps location URL');
 assert(BUSINESS_CONFIG.hours.timezone === 'Asia/Riyadh', 'Config specifies Asia/Riyadh timezone');
 assert(BUSINESS_CONFIG.hours.schedule[0] !== undefined, 'Config has daily hours schedule');
 assert(BUSINESS_CONFIG.utmCampaigns.business_card !== undefined, 'Config has business_card UTM campaign');
@@ -117,8 +119,7 @@ const vcardSample = [
   'ORG;CHARSET=UTF-8:Afrah Al Jazeera Auto Spare Parts',
   'TITLE;CHARSET=UTF-8:قطع غيار سيارات - Auto Spare Parts',
   'TEL;TYPE=CELL,VOICE,PREF:+966556516712',
-  'TEL;TYPE=WORK,VOICE:+966143900266',
-  'EMAIL;TYPE=INTERNET,WORK:jazeera@gmail.com',
+  'EMAIL;TYPE=INTERNET,WORK:Jazeera@afraa.business',
   'ADR;TYPE=WORK;CHARSET=UTF-8:;;Yanbu Manazel Hotel;Yanbu;;46424;Saudi Arabia',
   'URL:https://afrah-aljazeera.com/',
   'END:VCARD'
@@ -161,15 +162,15 @@ assert(printCss.includes('A4 portrait'), 'Print CSS configures A4 portrait page 
 
 // 8. Contact Consistency Verification
 console.log('\nTEST SUITE 8: Contact Consistency Across System');
-const phoneInHtml = indexHtml.includes('055 651 6712') || indexHtml.includes('055 651 6712');
+const phoneInHtml = indexHtml.includes('055 651 6712');
 const landlineInHtml = indexHtml.includes('014 390 0266') || indexHtml.includes('0143900266');
-const emailInHtml = indexHtml.includes('jazeera@gmail.com');
-const locationInHtml = indexHtml.includes('منازل ينبع') || indexHtml.includes('Yanbu Manazel');
+const emailInHtml = indexHtml.includes('Jazeera@afraa.business');
+const mapUrlInHtml = indexHtml.includes('https://maps.app.goo.gl/J2bkpwRHZwVGFoC48?g_st=aw');
 
-assert(phoneInHtml, 'Mobile phone is consistent in HTML');
-assert(landlineInHtml, 'Landline phone is consistent in HTML');
-assert(emailInHtml, 'Showroom email is consistent in HTML');
-assert(locationInHtml, 'Yanbu location is consistent in HTML');
+assert(phoneInHtml, 'Mobile phone +966 55 651 6712 is consistent in HTML');
+assert(!landlineInHtml, 'Landline phone (014 390 0266) is completely removed from HTML');
+assert(emailInHtml, 'Official email Jazeera@afraa.business is consistent in HTML');
+assert(mapUrlInHtml, 'Exact Google Maps shortlink is consistent in HTML');
 
 console.log('\n======================================================');
 console.log(`TEST RUN COMPLETED: Total ${testCount} | Passed: ${passCount} | Failed: ${failCount}`);
