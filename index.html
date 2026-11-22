@@ -120,19 +120,88 @@
   <!-- Dedicated Print Stylesheet -->
   <link rel="stylesheet" href="css/print.css" media="print"/>
 
-  <!-- Minified Tailwind CSS v3 & Configuration -->
-  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
-  <script>tailwind.config={theme:{extend:{screens:{xs:'360px'},colors:{brand:{navy:'#102D46',navyDark:'#0B1C2D',navyLight:'#1B456B',red:'#B5121B',redDark:'#930E15',sky:'#78AED0',skyLight:'#E8F2F8',neutralBg:'#F8FAFC'}},fontFamily:{cairo:['Cairo','sans-serif'],inter:['Inter','sans-serif']},boxShadow:{'card-soft':'0 10px 30px -5px rgba(16,45,70,.08),0 4px 6px -2px rgba(16,45,70,.04)','btn-hover':'0 12px 25px -4px rgba(16,45,70,.15)'}}}};</script>
+  <!-- Tailwind CSS v3 with Plugins & Extended Mobile Breakpoints -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        screens: {
+          'xs': '360px',
+          'sm': '640px',
+          'md': '768px',
+          'lg': '1024px',
+          'xl': '1280px',
+          '2xl': '1536px',
+        },
+        extend: {
+          colors: {
+            brand: {
+              navy: '#102D46',
+              navyDark: '#0B1C2D',
+              navyLight: '#1B456B',
+              red: '#B5121B',
+              redDark: '#930E15',
+              sky: '#78AED0',
+              skyLight: '#E8F2F8',
+              neutralBg: '#F8FAFC',
+            }
+          },
+          fontFamily: {
+            cairo: ['Cairo', 'sans-serif'],
+            inter: ['Inter', 'sans-serif'],
+          },
+          boxShadow: {
+            'card-soft': '0 10px 30px -5px rgba(16, 45, 70, 0.08), 0 4px 6px -2px rgba(16, 45, 70, 0.04)',
+            'btn-hover': '0 12px 25px -4px rgba(16, 45, 70, 0.15)',
+          }
+        }
+      }
+    }
+  </script>
 
   <!-- Mobile-First Responsive CSS Core Reset -->
   <style>
-    *,*::before,*::after{box-sizing: border-box}
-    html{-webkit-text-size-adjust: 100%;text-size-adjust: 100%;scroll-behavior:smooth}
-    body{font-family:'Cairo','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background-color:#ECEFF3;width:100%;max-width:100%;overflow-x: hidden;position:relative;margin:0;padding:0}
-    .font-latin{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
-    img,svg,iframe,canvas{max-width:100%;height:auto}
-    .qr-canvas-wrapper canvas{max-width:100%!important;height:auto!important;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.06)}
-    button,a{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    .hidden {
+      display: none !important;
+    }
+    html {
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Cairo', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #ECEFF3;
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+      position: relative;
+      margin: 0;
+      padding: 0;
+    }
+    .font-latin {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    /* Universal media constraint preventing horizontal blowouts */
+    img, svg, iframe, canvas {
+      max-width: 100%;
+      height: auto;
+    }
+    /* QR canvas container */
+    .qr-canvas-wrapper canvas {
+      max-width: 100% !important;
+      height: auto !important;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+    /* Touch optimization */
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
   </style>
 </head>
 <body class="min-h-screen text-slate-800 flex flex-col justify-between selection:bg-[#B5121B] selection:text-white antialiased overflow-x-hidden">
