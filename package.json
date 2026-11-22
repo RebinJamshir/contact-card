@@ -1,0 +1,19 @@
+{
+  "name": "afrid",
+  "version": "1.0.0",
+  "description": "Afrah Al Jazeera Auto Spare Parts Digital Contact Card",
+  "main": "server.js",
+  "scripts": {
+    "build:css": "tailwindcss -i ./css/input.css -o ./css/tailwind.min.css --minify",
+    "test": "node tests/test_responsive.js && node tests/test_suite.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RebinJamshir/contact-card.git"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.11",
+    "tailwindcss": "^3.4.17"
+  }
+}
