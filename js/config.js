@@ -46,21 +46,21 @@ const BUSINESS_CONFIG = {
     
     // Physical Location
     location: {
-      city: { ar: 'ينبع البحر', en: 'Yanbu Al-Bahr' },
-      area: { ar: 'بجوار فندق منازل ينبع', en: 'Near Yanbu Manazel Hotel' },
+      city: { ar: 'ينبع', en: 'Yanbu' },
+      area: { ar: 'طريق ينبع النخل', en: 'Yanbu An Nakhal Rd' },
       addressLine: {
-        ar: 'ينبع البحر، بجوار فندق منازل ينبع، المملكة العربية السعودية',
-        en: 'Yanbu Al-Bahr, Near Yanbu Manazel Hotel, Saudi Arabia'
+        ar: 'ينبع، طريق ينبع النخل، شركات أفراح الجزيرة',
+        en: 'Yanbu, Yanbu An Nakhal Rd, AFRAH AL JAZEERA AUTO SPARE PARTS'
       },
-      postalCode: '46424',
+      postalCode: '46429',
       region: 'منطقة المدينة المنورة (Al Madinah)',
       countryCode: 'SA',
       coordinates: {
         latitude: 24.0892,
         longitude: 38.0637
       },
-      googleMapsUrl: 'https://maps.app.goo.gl/J2bkpwRHZwVGFoC48?g_st=aw',
-      embedMapUrl: 'https://maps.google.com/maps?q=Yanbu+Manazel+Hotel&t=&z=15&ie=UTF8&iwloc=&output=embed'
+      googleMapsUrl: 'https://maps.app.goo.gl/mZwMgVcX4yk8VCap9?g_st=ic',
+      embedMapUrl: 'https://maps.google.com/maps?q=%D8%A7%D9%84%D8%AC%D8%B2%D9%8A%D8%B1%D8%A9+%D9%82%D8%B7%D8%B9+%D8%BA%D9%8A%D8%A7%D8%B1+%D9%81%D9%88%D8%B1%D8%AF+%D8%A7%D8%B5%D9%84%D9%8A+%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A%D8%8C+7831+%D8%B7%D8%B1%D9%8A%D9%82+%D9%8A%D9%86%D8%A8%D8%B9+%D8%A7%D9%84%D9%86%D8%AE%D9%84%D8%8C+2607,+Yanbu+46429&t=&z=15&ie=UTF8&iwloc=&output=embed'
     }
   },
 

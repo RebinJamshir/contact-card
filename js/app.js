@@ -22,7 +22,7 @@ const TRANSLATIONS = {
     closesAt: 'يغلق الساعة',
     workingHoursTitle: 'ساعات العمل الرسمية',
     yanbuLocation: 'ينبع • Yanbu',
-    yanbuAddressPill: 'فندق منازل ينبع | طريق الملك عبدالعزيز',
+    yanbuAddressPill: 'شركات أفراح الجزيرة | AFRAH AL JAZEERA AUTO SPARE PARTS',
     
     // Brand Titles
     companyName: 'شركة أفراح الجزيرة',
@@ -40,7 +40,8 @@ const TRANSLATIONS = {
     callMobileSub: '055 651 6712 • جوال المبيعات',
     emailBtn: 'البريد الإلكتروني الرسمي',
     directionsBtn: 'موقع المعرض على الخريطة',
-    directionsSub: 'ينبع البحر - بجوار فندق منازل ينبع',
+    directionsSub: 'AFRAH AL JAZEERA AUTO SPARE PARTS',
+    mapHeader: 'AFRAH AL JAZEERA AUTO SPARE PARTS • شركات أفراح الجزيرة',
     saveContactBtn: 'حفظ جهة الاتصال',
     qrHubBtn: 'مركز رموز QR والمشاركة',
     printSheetBtn: 'طباعة لوحة الرموز (A4)',
@@ -86,7 +87,7 @@ const TRANSLATIONS = {
     // Map & Footer
     mapExpanded: 'عرض موسع على Google Maps',
     copyright: 'جميع الحقوق محفوظة لـ شركة أفراح الجزيرة لقطع غيار السيارات ©',
-    footerLocation: 'المملكة العربية السعودية - ينبع البحر - بجوار فندق منازل ينبع'
+    footerLocation: 'المملكة العربية السعودية - ينبع - شركات أفراح الجزيرة'
   },
   en: {
     // Top Bar & Meta
@@ -97,7 +98,7 @@ const TRANSLATIONS = {
     closesAt: 'Closes at',
     workingHoursTitle: 'Official Business Hours',
     yanbuLocation: 'Yanbu • ينبع',
-    yanbuAddressPill: 'Yanbu Manazel Hotel | King Abdulaziz Rd',
+    yanbuAddressPill: 'AFRAH AL JAZEERA AUTO SPARE PARTS • شركات أفراح الجزيرة',
 
     // Brand Titles
     companyName: 'AFRAH AL JAZEERA',
@@ -115,7 +116,8 @@ const TRANSLATIONS = {
     callMobileSub: '055 651 6712 • Sales & Parts Specialist',
     emailBtn: 'Official Showroom Email',
     directionsBtn: 'Showroom Location on Map',
-    directionsSub: 'Yanbu Al-Bahr - Near Yanbu Manazel Hotel',
+    directionsSub: 'AFRAH AL JAZEERA AUTO SPARE PARTS',
+    mapHeader: 'AFRAH AL JAZEERA AUTO SPARE PARTS • شركات أفراح الجزيرة',
     saveContactBtn: 'Save to Contacts',
     qrHubBtn: 'QR Code Centre & Share',
     printSheetBtn: 'Print QR Display Sheet (A4)',
@@ -161,7 +163,7 @@ const TRANSLATIONS = {
     // Map & Footer
     mapExpanded: 'Open in Google Maps',
     copyright: 'All Rights Reserved © Afrah Al Jazeera Auto Spare Parts',
-    footerLocation: 'Saudi Arabia - Yanbu Al-Bahr - Near Yanbu Manazel Hotel'
+    footerLocation: 'Saudi Arabia - Yanbu - AFRAH AL JAZEERA AUTO SPARE PARTS'
   }
 };
 
