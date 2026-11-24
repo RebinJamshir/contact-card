@@ -298,12 +298,41 @@ function getBusinessHoursStatus() {
     }
   }
 
+  // Localized current date & time in Asia/Riyadh timezone
+  const isAr = (AppState.currentLang === 'ar');
+  const dateOpt = { timeZone: BUSINESS_CONFIG.hours.timezone, weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  const shortDateOpt = { timeZone: BUSINESS_CONFIG.hours.timezone, weekday: 'long', month: 'long', day: 'numeric' };
+  const timeOpt = { timeZone: BUSINESS_CONFIG.hours.timezone, hour: '2-digit', minute: '2-digit', hour12: true };
+
+  let currentDateFormatted = '';
+  let shortDateFormatted = '';
+  let currentTimeFormatted = '';
+
+  try {
+    currentDateFormatted = isAr
+      ? new Intl.DateTimeFormat('ar-SA-u-nu-latn-ca-gregory', dateOpt).format(now)
+      : new Intl.DateTimeFormat('en-US', dateOpt).format(now);
+    shortDateFormatted = isAr
+      ? new Intl.DateTimeFormat('ar-SA-u-nu-latn-ca-gregory', shortDateOpt).format(now)
+      : new Intl.DateTimeFormat('en-US', { timeZone: BUSINESS_CONFIG.hours.timezone, weekday: 'short', month: 'short', day: 'numeric' }).format(now);
+    currentTimeFormatted = isAr
+      ? new Intl.DateTimeFormat('ar-SA-u-nu-latn', timeOpt).format(now)
+      : new Intl.DateTimeFormat('en-US', timeOpt).format(now);
+  } catch (e) {
+    currentDateFormatted = now.toLocaleDateString();
+    shortDateFormatted = now.toLocaleDateString();
+    currentTimeFormatted = now.toLocaleTimeString();
+  }
+
   return {
     isOpen,
     riyadhDay,
     todayHoursRange,
     currentClosingTime,
-    nextOpenMessage
+    nextOpenMessage,
+    currentDateFormatted,
+    shortDateFormatted,
+    currentTimeFormatted
   };
 }
 
@@ -320,6 +349,7 @@ function updateBusinessHoursUI() {
   const statusBadge = document.getElementById('statusBadgeContainer');
   const statusText = document.getElementById('statusText');
   const statusTime = document.getElementById('statusTime');
+  const statusDate = document.getElementById('statusDate');
   const statusPing = document.getElementById('statusPing');
   const statusDot = document.getElementById('statusDot');
 
@@ -337,6 +367,20 @@ function updateBusinessHoursUI() {
       if (statusPing) statusPing.className = 'animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75';
       if (statusDot) statusDot.className = 'relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-500';
     }
+  }
+
+  if (statusDate && status.shortDateFormatted) {
+    statusDate.textContent = `| ${status.shortDateFormatted}`;
+  }
+
+  // Update modal date and time banner
+  const modalDate = document.getElementById('modalCurrentDateText');
+  if (modalDate && status.currentDateFormatted) {
+    modalDate.textContent = (lang === 'ar' ? 'اليوم: ' : 'Today: ') + status.currentDateFormatted;
+  }
+  const modalTime = document.getElementById('modalCurrentTimeText');
+  if (modalTime && status.currentTimeFormatted) {
+    modalTime.textContent = status.currentTimeFormatted;
   }
 
   // Update schedule table inside modal
