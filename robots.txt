@@ -4,4 +4,4 @@ User-agent: *
 Allow: /
 
 # Sitemap Location
-Sitemap: https://afrah-aljazeera.com/sitemap.xml
+Sitemap: https://contact.afraa.business/sitemap.xml

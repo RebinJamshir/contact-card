@@ -8,7 +8,7 @@
 const BUSINESS_CONFIG = {
   // Production Website Domain
   // IMPORTANT: Update this placeholder to your actual live website URL before printing QR codes!
-  productionUrl: 'https://afrah-aljazeera.com',
+  productionUrl: 'https://contact.afraa.business',
 
   // Google Analytics 4 Measurement ID (Leave blank to disable tracking)
   // Example: 'G-ABC123XYZ'

@@ -89,7 +89,7 @@ if (schemaMatch) {
 console.log('\nTEST SUITE 4: Central Configuration (js/config.js)');
 const BUSINESS_CONFIG = require(path.join(ROOT, 'js/config.js'));
 
-assert(BUSINESS_CONFIG.productionUrl === 'https://afrah-aljazeera.com', 'Config contains productionUrl');
+assert(BUSINESS_CONFIG.productionUrl === 'https://contact.afraa.business', 'Config contains productionUrl');
 assert(BUSINESS_CONFIG.name.en === 'AFRAA AL JAZEERA AUTO SPARE PARTS', 'Config contains English name AFRAA AL JAZEERA AUTO SPARE PARTS');
 assert(BUSINESS_CONFIG.name.ar === 'شركات أفراح الجزيرة لقطع غيار السيارات', 'Config contains Arabic name شركات أفراح الجزيرة لقطع غيار السيارات');
 assert(BUSINESS_CONFIG.contacts.mobile.raw === '+966556516712', 'Config contains mobile +966556516712');
@@ -108,7 +108,7 @@ const qrcode = require(path.join(ROOT, 'js/qrcode.min.js'));
 
 // A. Website QR
 const websiteQr = qrcode(0, 'M');
-websiteQr.addData('https://afrah-aljazeera.com/?utm_source=business_card&utm_medium=qr&utm_campaign=offline_card');
+websiteQr.addData('https://contact.afraa.business/?utm_source=business_card&utm_medium=qr&utm_campaign=offline_card');
 websiteQr.make();
 assert(websiteQr.getModuleCount() > 20, `Website QR generated modules: ${websiteQr.getModuleCount()}x${websiteQr.getModuleCount()}`);
 const websiteSvg = websiteQr.createSvgTag(6, 4);
@@ -124,7 +124,7 @@ const vcardSample = [
   'TEL;TYPE=CELL,VOICE,PREF:+966556516712',
   'EMAIL;TYPE=INTERNET,WORK:Jazeera@afraa.business',
   'ADR;TYPE=WORK;CHARSET=UTF-8:;;AFRAA AL JAZEERA AUTO SPARE PARTS;Yanbu;;46429;Saudi Arabia',
-  'URL:https://afrah-aljazeera.com/',
+  'URL:https://contact.afraa.business/',
   'END:VCARD'
 ].join('\r\n');
 
@@ -149,10 +149,10 @@ assert(waSvg.includes('#128C7E'), 'WhatsApp QR SVG supports custom emerald/green
 console.log('\nTEST SUITE 6: Robots.txt & Sitemap.xml Validation');
 const robotsTxt = fs.readFileSync(path.join(ROOT, 'robots.txt'), 'utf-8');
 assert(robotsTxt.includes('User-agent: *') && robotsTxt.includes('Allow: /'), 'Robots.txt contains standard crawl directives');
-assert(robotsTxt.includes('Sitemap: https://afrah-aljazeera.com/sitemap.xml'), 'Robots.txt references correct sitemap URL');
+assert(robotsTxt.includes('Sitemap: https://contact.afraa.business/sitemap.xml'), 'Robots.txt references correct sitemap URL');
 
 const sitemapXml = fs.readFileSync(path.join(ROOT, 'sitemap.xml'), 'utf-8');
-assert(sitemapXml.includes('<loc>https://afrah-aljazeera.com/</loc>'), 'Sitemap contains canonical URL');
+assert(sitemapXml.includes('<loc>https://contact.afraa.business/</loc>'), 'Sitemap contains canonical URL');
 assert(sitemapXml.includes('xhtml:link rel="alternate" hreflang="ar"'), 'Sitemap contains hreflang ar');
 assert(sitemapXml.includes('xhtml:link rel="alternate" hreflang="en"'), 'Sitemap contains hreflang en');
 
