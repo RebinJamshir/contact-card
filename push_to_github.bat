@@ -1,7 +1,7 @@
 @echo off
-title Push to GitHub - Afrah Al Jazeera
+title Push to GitHub - AFRAA AL JAZEERA
 echo ======================================================
-echo Pushing Afrah Al Jazeera Auto Spare Parts to GitHub...
+echo Pushing AFRAA AL JAZEERA AUTO SPARE PARTS to GitHub...
 echo Repository: https://github.com/RebinJamshir/contact-card.git
 echo ======================================================
 echo.

@@ -1,4 +1,4 @@
-# Afrah Al Jazeera - Quick GitHub Push Script
+# AFRAA AL JAZEERA - Quick GitHub Push Script
 # Usage: .\push_to_github.ps1 -RepoUrl "https://github.com/your-username/your-repo.git"
 
 param(

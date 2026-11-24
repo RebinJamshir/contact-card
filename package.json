@@ -1,7 +1,7 @@
 {
   "name": "afrid",
   "version": "1.0.0",
-  "description": "Afrah Al Jazeera Auto Spare Parts Digital Contact Card",
+  "description": "AFRAA AL JAZEERA AUTO SPARE PARTS Digital Contact Card",
   "main": "server.js",
   "scripts": {
     "build:css": "tailwindcss -i ./css/input.css -o ./css/tailwind.min.css --minify",

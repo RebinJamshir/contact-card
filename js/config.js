@@ -1,6 +1,6 @@
 /**
- * Afrah Al Jazeera Auto Spare Parts - Central Configuration
- * شركة أفراح الجزيرة لقطع غيار السيارات - ملف الإعدادات الموحد
+ * AFRAA AL JAZEERA AUTO SPARE PARTS - Central Configuration
+ * شركات أفراح الجزيرة لقطع غيار السيارات - ملف الإعدادات الموحد
  * 
  * Update your production domain, business hours, and contact details here.
  */
@@ -16,12 +16,12 @@ const BUSINESS_CONFIG = {
 
   // Business Profile
   name: {
-    ar: 'شركة أفراح الجزيرة لقطع غيار السيارات',
-    en: 'Afrah Al Jazeera Auto Spare Parts'
+    ar: 'شركات أفراح الجزيرة لقطع غيار السيارات',
+    en: 'AFRAA AL JAZEERA AUTO SPARE PARTS'
   },
   shortName: {
-    ar: 'أفراح الجزيرة',
-    en: 'Afrah Al Jazeera'
+    ar: 'شركات أفراح الجزيرة',
+    en: 'AFRAA AL JAZEERA'
   },
   tagline: {
     ar: 'لتجارة واستيراد جميع أنواع قطع غيار السيارات الأصلية والمضمونة',
@@ -50,7 +50,7 @@ const BUSINESS_CONFIG = {
       area: { ar: 'طريق ينبع النخل', en: 'Yanbu An Nakhal Rd' },
       addressLine: {
         ar: 'ينبع، طريق ينبع النخل، شركات أفراح الجزيرة',
-        en: 'Yanbu, Yanbu An Nakhal Rd, AFRAH AL JAZEERA AUTO SPARE PARTS'
+        en: 'Yanbu, Yanbu An Nakhal Rd, AFRAA AL JAZEERA AUTO SPARE PARTS'
       },
       postalCode: '46429',
       region: 'منطقة المدينة المنورة (Al Madinah)',
@@ -66,10 +66,10 @@ const BUSINESS_CONFIG = {
 
   // Social Media Channels (Optional - Paste your profile URLs when available)
   socials: {
-    instagram: '', // e.g. 'https://instagram.com/afrah_aljazeera'
-    tiktok: '',    // e.g. 'https://tiktok.com/@afrah_aljazeera'
-    snapchat: '',  // e.g. 'https://snapchat.com/add/afrah_aljazeera'
-    twitter: ''    // e.g. 'https://x.com/afrah_aljazeera'
+    instagram: '', // e.g. 'https://instagram.com/afraa_aljazeera'
+    tiktok: '',    // e.g. 'https://tiktok.com/@afraa_aljazeera'
+    snapchat: '',  // e.g. 'https://snapchat.com/add/afraa_aljazeera'
+    twitter: ''    // e.g. 'https://x.com/afraa_aljazeera'
   },
 
   // Business Hours Configuration (Asia/Riyadh Timezone)
@@ -121,7 +121,7 @@ const BUSINESS_CONFIG = {
     },
     inquiryLead: {
       ar: `السلام عليكم ورحمة الله وبركاته
-استفسار عن قطع غيار - شركة أفراح الجزيرة
+استفسار عن قطع غيار - شركات أفراح الجزيرة
 ──────────────────
 👤 الاسم: {name}
 🚗 الماركة: {brand}
@@ -132,7 +132,7 @@ const BUSINESS_CONFIG = {
 📝 ملاحظات: {notes}
 ──────────────────
 أرجو التكرم بإفادتي بالتوفر والسعر. شكراً لكم.`,
-      en: `Hello, Afrah Al Jazeera Spare Parts
+      en: `Hello, AFRAA AL JAZEERA Spare Parts
 Spare Parts Inquiry
 ──────────────────
 👤 Name: {name}

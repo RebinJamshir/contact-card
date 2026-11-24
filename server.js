@@ -1,5 +1,5 @@
 /**
- * Afrah Al Jazeera - Local Live Development & Preview Server
+ * AFRAA AL JAZEERA - Local Live Development & Preview Server
  */
 const http = require('http');
 const fs = require('fs');
@@ -48,7 +48,7 @@ const server = http.createServer((req, res) => {
 
 server.listen(PORT, '0.0.0.0', () => {
   console.log(`\n======================================================`);
-  console.log(`Afrah Al Jazeera Auto Spare Parts - Live Server Active!`);
+  console.log(`AFRAA AL JAZEERA AUTO SPARE PARTS - Live Server Active!`);
   console.log(`Local Access URL:   http://localhost:${PORT}/`);
   console.log(`Network Access URL: http://127.0.0.1:${PORT}/`);
   console.log(`======================================================\n`);

@@ -1,6 +1,6 @@
 /**
- * Afrah Al Jazeera Auto Spare Parts - Core Application Engine
- * شركة أفراح الجزيرة لقطع غيار السيارات - المحرك التفاعلي
+ * AFRAA AL JAZEERA AUTO SPARE PARTS - Core Application Engine
+ * شركات أفراح الجزيرة لقطع غيار السيارات - المحرك التفاعلي
  */
 
 // Global Application State
@@ -22,11 +22,11 @@ const TRANSLATIONS = {
     closesAt: 'يغلق الساعة',
     workingHoursTitle: 'ساعات العمل الرسمية',
     yanbuLocation: 'ينبع • Yanbu',
-    yanbuAddressPill: 'شركات أفراح الجزيرة | AFRAH AL JAZEERA AUTO SPARE PARTS',
+    yanbuAddressPill: 'شركات أفراح الجزيرة | AFRAA AL JAZEERA AUTO SPARE PARTS',
     
     // Brand Titles
-    companyName: 'شركة أفراح الجزيرة',
-    companySubTitle: 'AFRAH AL JAZEERA',
+    companyName: 'شركات أفراح الجزيرة',
+    companySubTitle: 'AFRAA AL JAZEERA',
     badgeText: 'AUTO SPARE PARTS • لقطع غيار السيارات',
     companyDesc: 'لتجارة واستيراد جميع أنواع قطع غيار السيارات الأصلية والمضمونة في ينبع',
     subFeatures: 'محركات • فرامل ومكابح • فلاتر وزيوت • بطاريات وكهرباء • أنظمة تعليق',
@@ -40,8 +40,8 @@ const TRANSLATIONS = {
     callMobileSub: '055 651 6712 • جوال المبيعات',
     emailBtn: 'البريد الإلكتروني الرسمي',
     directionsBtn: 'موقع المعرض على الخريطة',
-    directionsSub: 'AFRAH AL JAZEERA AUTO SPARE PARTS',
-    mapHeader: 'AFRAH AL JAZEERA AUTO SPARE PARTS • شركات أفراح الجزيرة',
+    directionsSub: 'AFRAA AL JAZEERA AUTO SPARE PARTS',
+    mapHeader: 'AFRAA AL JAZEERA AUTO SPARE PARTS • شركات أفراح الجزيرة',
     saveContactBtn: 'حفظ جهة الاتصال',
     qrHubBtn: 'مركز رموز QR والمشاركة',
     printSheetBtn: 'طباعة لوحة الرموز (A4)',
@@ -86,7 +86,7 @@ const TRANSLATIONS = {
 
     // Map & Footer
     mapExpanded: 'عرض موسع على Google Maps',
-    copyright: 'جميع الحقوق محفوظة لـ شركة أفراح الجزيرة لقطع غيار السيارات ©',
+    copyright: 'جميع الحقوق محفوظة لـ شركات أفراح الجزيرة لقطع غيار السيارات ©',
     footerLocation: 'المملكة العربية السعودية - ينبع - شركات أفراح الجزيرة'
   },
   en: {
@@ -98,11 +98,11 @@ const TRANSLATIONS = {
     closesAt: 'Closes at',
     workingHoursTitle: 'Official Business Hours',
     yanbuLocation: 'Yanbu • ينبع',
-    yanbuAddressPill: 'AFRAH AL JAZEERA AUTO SPARE PARTS • شركات أفراح الجزيرة',
+    yanbuAddressPill: 'AFRAA AL JAZEERA AUTO SPARE PARTS • شركات أفراح الجزيرة',
 
     // Brand Titles
-    companyName: 'AFRAH AL JAZEERA',
-    companySubTitle: 'شركة أفراح الجزيرة',
+    companyName: 'AFRAA AL JAZEERA',
+    companySubTitle: 'شركات أفراح الجزيرة',
     badgeText: 'AUTO SPARE PARTS • GENUINE & OEM',
     companyDesc: 'Import & Trade of Genuine and High-Grade Automotive Spare Parts in Yanbu',
     subFeatures: 'Engine • Brakes • Filters & Oils • Batteries & Starters • Suspension',
@@ -116,8 +116,8 @@ const TRANSLATIONS = {
     callMobileSub: '055 651 6712 • Sales & Parts Specialist',
     emailBtn: 'Official Showroom Email',
     directionsBtn: 'Showroom Location on Map',
-    directionsSub: 'AFRAH AL JAZEERA AUTO SPARE PARTS',
-    mapHeader: 'AFRAH AL JAZEERA AUTO SPARE PARTS • شركات أفراح الجزيرة',
+    directionsSub: 'AFRAA AL JAZEERA AUTO SPARE PARTS',
+    mapHeader: 'AFRAA AL JAZEERA AUTO SPARE PARTS • شركات أفراح الجزيرة',
     saveContactBtn: 'Save to Contacts',
     qrHubBtn: 'QR Code Centre & Share',
     printSheetBtn: 'Print QR Display Sheet (A4)',
@@ -162,8 +162,8 @@ const TRANSLATIONS = {
 
     // Map & Footer
     mapExpanded: 'Open in Google Maps',
-    copyright: 'All Rights Reserved © Afrah Al Jazeera Auto Spare Parts',
-    footerLocation: 'Saudi Arabia - Yanbu - AFRAH AL JAZEERA AUTO SPARE PARTS'
+    copyright: 'All Rights Reserved © AFRAA AL JAZEERA AUTO SPARE PARTS',
+    footerLocation: 'Saudi Arabia - Yanbu - AFRAA AL JAZEERA AUTO SPARE PARTS'
   }
 };
 
@@ -444,17 +444,17 @@ function updateAllQRCodes() {
  */
 function downloadQRPNG(type) {
   let targetCanvas = null;
-  let filename = 'afrah-aljazeera-qr.png';
+  let filename = 'afraa-aljazeera-qr.png';
 
   if (type === 'website') {
     targetCanvas = document.getElementById('qrCanvasWebsite');
-    filename = `afrah-aljazeera-website-${AppState.selectedCampaign}.png`;
+    filename = `afraa-aljazeera-website-${AppState.selectedCampaign}.png`;
   } else if (type === 'contact') {
     targetCanvas = document.getElementById('qrCanvasContact');
-    filename = 'afrah-aljazeera-contact-vcard.png';
+    filename = 'afraa-aljazeera-contact-vcard.png';
   } else if (type === 'whatsapp') {
     targetCanvas = document.getElementById('qrCanvasWhatsApp');
-    filename = 'afrah-aljazeera-whatsapp.png';
+    filename = 'afraa-aljazeera-whatsapp.png';
   }
 
   if (!targetCanvas) return;
@@ -474,19 +474,19 @@ function downloadQRPNG(type) {
  */
 function downloadQRSVG(type) {
   let text = '';
-  let filename = 'afrah-aljazeera-qr.svg';
+  let filename = 'afraa-aljazeera-qr.svg';
   let darkColor = '#102D46';
 
   if (type === 'website') {
     text = getActiveWebsiteUrl(AppState.selectedCampaign);
-    filename = `afrah-aljazeera-website-${AppState.selectedCampaign}.svg`;
+    filename = `afraa-aljazeera-website-${AppState.selectedCampaign}.svg`;
   } else if (type === 'contact') {
     text = buildVCardString();
-    filename = 'afrah-aljazeera-contact-vcard.svg';
+    filename = 'afraa-aljazeera-contact-vcard.svg';
     darkColor = '#B5121B';
   } else if (type === 'whatsapp') {
     text = buildWhatsAppUrl();
-    filename = 'afrah-aljazeera-whatsapp.svg';
+    filename = 'afraa-aljazeera-whatsapp.svg';
     darkColor = '#128C7E';
   }
 
@@ -516,7 +516,7 @@ function downloadVCardFile() {
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
   link.href = url;
-  link.setAttribute('download', 'Afrah_Al_Jazeera_Auto_Spare_Parts.vcf');
+  link.setAttribute('download', 'Afraa_Al_Jazeera_Auto_Spare_Parts.vcf');
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
@@ -679,7 +679,7 @@ function showToast(message) {
 function setLanguage(lang) {
   if (lang !== 'ar' && lang !== 'en') return;
   AppState.currentLang = lang;
-  localStorage.setItem('afrah_pref_lang', lang);
+  localStorage.setItem('afraa_pref_lang', lang);
 
   // Update HTML attributes
   document.documentElement.lang = lang;
@@ -687,13 +687,13 @@ function setLanguage(lang) {
 
   // Update document title & meta description dynamically
   if (lang === 'ar') {
-    document.title = 'شركة أفراح الجزيرة لقطع غيار السيارات | ينبع | Afrah Al Jazeera Auto Spare Parts';
+    document.title = 'شركات أفراح الجزيرة لقطع غيار السيارات | ينبع | AFRAA AL JAZEERA AUTO SPARE PARTS';
     const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) metaDesc.content = 'شركة أفراح الجزيرة لتجارة واستيراد جميع أنواع قطع غيار السيارات الأصلية والمضمونة في ينبع، المملكة العربية السعودية. بطاريات، مكابح، فلاتر، محركات وأنظمة تعليق.';
+    if (metaDesc) metaDesc.content = 'شركات أفراح الجزيرة لتجارة واستيراد جميع أنواع قطع غيار السيارات الأصلية والمضمونة في ينبع، المملكة العربية السعودية. بطاريات، مكابح، فلاتر، محركات وأنظمة تعليق. AFRAA AL JAZEERA AUTO SPARE PARTS in Yanbu, Saudi Arabia.';
   } else {
-    document.title = 'Afrah Al Jazeera Auto Spare Parts | Yanbu | Car Spare Parts Store';
+    document.title = 'AFRAA AL JAZEERA AUTO SPARE PARTS | Yanbu | Car Spare Parts Store';
     const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) metaDesc.content = 'Afrah Al Jazeera Auto Spare Parts in Yanbu, Saudi Arabia. Trade & import of genuine and OEM automotive parts: engines, brakes, filters, batteries, suspension.';
+    if (metaDesc) metaDesc.content = 'AFRAA AL JAZEERA AUTO SPARE PARTS in Yanbu, Saudi Arabia. Trade & import of genuine and OEM automotive parts: engines, brakes, filters, batteries, suspension.';
   }
 
   // Update language toggle button text
@@ -809,7 +809,7 @@ document.addEventListener('DOMContentLoaded', () => {
   yearEls.forEach(el => el.textContent = new Date().getFullYear());
 
   // Setup saved language or default
-  const savedLang = localStorage.getItem('afrah_pref_lang');
+  const savedLang = localStorage.getItem('afraa_pref_lang') || localStorage.getItem('afrah_pref_lang');
   const urlParams = new URLSearchParams(window.location.search);
   const paramLang = urlParams.get('lang');
   const initialLang = (paramLang === 'en' || paramLang === 'ar') ? paramLang : (savedLang || 'ar');

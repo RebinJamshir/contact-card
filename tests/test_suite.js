@@ -1,5 +1,5 @@
 /**
- * Afrah Al Jazeera - Automated Test Suite
+ * AFRAA AL JAZEERA - Automated Test Suite
  * Validates SEO, Schema.org, QR Generation, vCard RFC compliance, and Business Hours Engine
  */
 
@@ -23,7 +23,7 @@ function assert(condition, testName, details = '') {
 }
 
 console.log('======================================================');
-console.log('RUNNING AFRAH AL JAZEERA COMPREHENSIVE TEST SUITE');
+console.log('RUNNING AFRAA AL JAZEERA COMPREHENSIVE TEST SUITE');
 console.log('======================================================\n');
 
 // 1. File Structure Tests
@@ -35,6 +35,7 @@ const requiredFiles = [
   'manifest.webmanifest',
   'css/print.css',
   'assets/favicon.svg',
+  'assets/logo.jpg',
   'js/qrcode.min.js',
   'js/config.js',
   'js/app.js'
@@ -48,7 +49,7 @@ requiredFiles.forEach(relPath => {
 console.log('\nTEST SUITE 2: Technical SEO & HTML Metadata');
 const indexHtml = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf-8');
 
-assert(indexHtml.includes('<title>شركة أفراح الجزيرة لقطع غيار السيارات'), 'HTML contains optimized bilingual title');
+assert(indexHtml.includes('<title>شركات أفراح الجزيرة لقطع غيار السيارات'), 'HTML contains optimized bilingual title');
 assert(indexHtml.includes('<meta name="description"'), 'HTML contains meta description');
 assert(indexHtml.includes('rel="canonical"'), 'HTML contains canonical link');
 assert(indexHtml.includes('hreflang="ar"'), 'HTML contains hreflang ar');
@@ -72,7 +73,7 @@ if (schemaMatch) {
   try {
     schemaData = JSON.parse(schemaMatch[1]);
     assert(schemaData['@type'] === 'AutoPartsStore', 'Schema type is AutoPartsStore');
-    assert(schemaData.name === 'شركة أفراح الجزيرة لقطع غيار السيارات', 'Schema name matches Arabic business name');
+    assert(schemaData.name === 'شركات أفراح الجزيرة لقطع غيار السيارات', 'Schema name matches Arabic business name');
     assert(schemaData.telephone === '+966556516712', 'Schema telephone matches verified mobile');
     assert(schemaData.email === 'Jazeera@afraa.business', 'Schema email matches verified email');
     assert(schemaData.hasMap === 'https://maps.app.goo.gl/mZwMgVcX4yk8VCap9?g_st=ic', 'Schema hasMap matches exact Google Maps URL');
@@ -89,6 +90,8 @@ console.log('\nTEST SUITE 4: Central Configuration (js/config.js)');
 const BUSINESS_CONFIG = require(path.join(ROOT, 'js/config.js'));
 
 assert(BUSINESS_CONFIG.productionUrl === 'https://afrah-aljazeera.com', 'Config contains productionUrl');
+assert(BUSINESS_CONFIG.name.en === 'AFRAA AL JAZEERA AUTO SPARE PARTS', 'Config contains English name AFRAA AL JAZEERA AUTO SPARE PARTS');
+assert(BUSINESS_CONFIG.name.ar === 'شركات أفراح الجزيرة لقطع غيار السيارات', 'Config contains Arabic name شركات أفراح الجزيرة لقطع غيار السيارات');
 assert(BUSINESS_CONFIG.contacts.mobile.raw === '+966556516712', 'Config contains mobile +966556516712');
 assert(BUSINESS_CONFIG.contacts.mobile.clean === '966556516712', 'Config contains clean mobile 966556516712');
 assert(BUSINESS_CONFIG.contacts.landline === undefined, 'Landline is completely removed from config');
@@ -115,12 +118,12 @@ assert(websiteSvg.startsWith('<?xml') && websiteSvg.includes('<svg') && websiteS
 const vcardSample = [
   'BEGIN:VCARD',
   'VERSION:3.0',
-  'FN;CHARSET=UTF-8:شركة أفراح الجزيرة لقطع غيار السيارات',
-  'ORG;CHARSET=UTF-8:Afrah Al Jazeera Auto Spare Parts',
+  'FN;CHARSET=UTF-8:شركات أفراح الجزيرة لقطع غيار السيارات',
+  'ORG;CHARSET=UTF-8:AFRAA AL JAZEERA AUTO SPARE PARTS',
   'TITLE;CHARSET=UTF-8:قطع غيار سيارات - Auto Spare Parts',
   'TEL;TYPE=CELL,VOICE,PREF:+966556516712',
   'EMAIL;TYPE=INTERNET,WORK:Jazeera@afraa.business',
-  'ADR;TYPE=WORK;CHARSET=UTF-8:;;AFRAH AL JAZEERA AUTO SPARE PARTS;Yanbu;;46429;Saudi Arabia',
+  'ADR;TYPE=WORK;CHARSET=UTF-8:;;AFRAA AL JAZEERA AUTO SPARE PARTS;Yanbu;;46429;Saudi Arabia',
   'URL:https://afrah-aljazeera.com/',
   'END:VCARD'
 ].join('\r\n');
@@ -160,19 +163,21 @@ assert(printCss.includes('@media print'), 'Print CSS contains @media print rule'
 assert(printCss.includes('.print-qr-grid'), 'Print CSS defines .print-qr-grid layout');
 assert(printCss.includes('A4 portrait'), 'Print CSS configures A4 portrait page size');
 
-// 8. Contact Consistency Verification
-console.log('\nTEST SUITE 8: Contact Consistency Across System');
+// 8. Contact & Brand Consistency Verification
+console.log('\nTEST SUITE 8: Contact & Brand Consistency Across System');
 const phoneInHtml = indexHtml.includes('055 651 6712');
 const landlineInHtml = indexHtml.includes('014 390 0266') || indexHtml.includes('0143900266');
 const emailInHtml = indexHtml.includes('Jazeera@afraa.business');
 const mapUrlInHtml = indexHtml.includes('https://maps.app.goo.gl/mZwMgVcX4yk8VCap9?g_st=ic');
-const oldHotelInHtml = indexHtml.includes('Manazel') || indexHtml.includes('منازل');
+const afraaInHtml = indexHtml.includes('AFRAA AL JAZEERA');
+const oldAfrahInHtml = indexHtml.includes('AFRAH AL JAZEERA');
 
 assert(phoneInHtml, 'Mobile phone +966 55 651 6712 is consistent in HTML');
 assert(!landlineInHtml, 'Landline phone (014 390 0266) is completely removed from HTML');
 assert(emailInHtml, 'Official email Jazeera@afraa.business is consistent in HTML');
 assert(mapUrlInHtml, 'Exact Google Maps shortlink is consistent in HTML');
-assert(!oldHotelInHtml, 'Incorrect hotel name (Manazel) is completely removed from HTML');
+assert(afraaInHtml, 'New official business name AFRAA AL JAZEERA is present in HTML');
+assert(!oldAfrahInHtml, 'Old business name AFRAH AL JAZEERA is completely removed from HTML');
 
 console.log('\n======================================================');
 console.log(`TEST RUN COMPLETED: Total ${testCount} | Passed: ${passCount} | Failed: ${failCount}`);
@@ -181,4 +186,5 @@ console.log('======================================================');
 if (failCount > 0) {
   process.exit(1);
 }
+
 
