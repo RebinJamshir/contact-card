@@ -87,7 +87,10 @@ const TRANSLATIONS = {
     // Map & Footer
     mapExpanded: 'عرض موسع على Google Maps',
     copyright: 'جميع الحقوق محفوظة لـ شركات أفراح الجزيرة لقطع غيار السيارات ©',
-    footerLocation: 'المملكة العربية السعودية - ينبع - شركات أفراح الجزيرة'
+    footerLocation: 'المملكة العربية السعودية - ينبع - شركات أفراح الجزيرة',
+    hoursModalSubtitle: 'توقيت مكة المكرمة / الرياض (UTC+3)',
+    hoursModalFooter: 'ينبع - شركات أفراح الجزيرة • اتصال: 055 651 6712',
+    todayBadge: 'اليوم'
   },
   en: {
     // Top Bar & Meta
@@ -97,6 +100,9 @@ const TRANSLATIONS = {
     opensTomorrowAt: 'Opens tomorrow at',
     closesAt: 'Closes at',
     workingHoursTitle: 'Official Business Hours',
+    hoursModalSubtitle: 'Asia/Riyadh Standard Time (UTC+3)',
+    hoursModalFooter: 'Yanbu - AFRAA AL JAZEERA • Call: +966 55 651 6712',
+    todayBadge: 'Today',
     yanbuLocation: 'Yanbu • ينبع',
     yanbuAddressPill: 'AFRAA AL JAZEERA AUTO SPARE PARTS • شركات أفراح الجزيرة',
 
@@ -204,6 +210,19 @@ function getActiveWebsiteUrl(campaignKey) {
 /**
  * Real-Time Asia/Riyadh Business Hours Engine
  */
+function formatTime12(timeStr24, lang) {
+  const [h, m] = timeStr24.split(':').map(Number);
+  const suffix = h >= 12 ? (lang === 'ar' ? 'م' : 'PM') : (lang === 'ar' ? 'ص' : 'AM');
+  const h12 = h % 12 === 0 ? 12 : h % 12;
+  const padH = (h12 < 10 ? '0' : '') + h12;
+  const padM = (m < 10 ? '0' : '') + m;
+  return `${padH}:${padM} ${suffix}`;
+}
+
+function formatSessionRange(session, lang) {
+  return `${formatTime12(session.open, lang)} – ${formatTime12(session.close, lang)}`;
+}
+
 function getBusinessHoursStatus() {
   const now = new Date();
   // Format current time into Asia/Riyadh
@@ -230,9 +249,13 @@ function getBusinessHoursStatus() {
   let isOpen = false;
   let currentClosingTime = '';
   let nextOpenMessage = '';
+  let todayHoursRange = '';
 
   // Check today's sessions
   if (todayConfig && todayConfig.sessions && todayConfig.sessions.length > 0) {
+    const firstSession = todayConfig.sessions[0];
+    todayHoursRange = formatSessionRange(firstSession, AppState.currentLang);
+
     for (const session of todayConfig.sessions) {
       const [openH, openM] = session.open.split(':').map(Number);
       const [closeH, closeM] = session.close.split(':').map(Number);
@@ -241,7 +264,7 @@ function getBusinessHoursStatus() {
 
       if (currentTotalMinutes >= openMinutes && currentTotalMinutes < closeMinutes) {
         isOpen = true;
-        currentClosingTime = formatTimeDisplay(session.close, AppState.currentLang);
+        currentClosingTime = formatTime12(session.close, AppState.currentLang);
         break;
       }
     }
@@ -256,7 +279,7 @@ function getBusinessHoursStatus() {
         const [openH, openM] = session.open.split(':').map(Number);
         const openMinutes = openH * 60 + openM;
         if (openMinutes > currentTotalMinutes) {
-          nextOpenMessage = (AppState.currentLang === 'ar' ? 'يفتح اليوم ' : 'Opens today at ') + formatTimeDisplay(session.open, AppState.currentLang);
+          nextOpenMessage = (AppState.currentLang === 'ar' ? 'يفتح ' : 'Opens ') + formatTime12(session.open, AppState.currentLang);
           foundLaterToday = true;
           break;
         }
@@ -268,7 +291,7 @@ function getBusinessHoursStatus() {
       const tomorrowConfig = BUSINESS_CONFIG.hours.schedule[tomorrowDay];
       if (tomorrowConfig && tomorrowConfig.sessions && tomorrowConfig.sessions.length > 0) {
         const firstSession = tomorrowConfig.sessions[0];
-        nextOpenMessage = (AppState.currentLang === 'ar' ? 'يفتح غداً ' : 'Opens tomorrow at ') + formatTimeDisplay(firstSession.open, AppState.currentLang);
+        nextOpenMessage = (AppState.currentLang === 'ar' ? 'يفتح غداً ' : 'Opens tomorrow ') + formatTime12(firstSession.open, AppState.currentLang);
       } else {
         nextOpenMessage = (AppState.currentLang === 'ar' ? 'مغلق مؤقتاً' : 'Temporarily Closed');
       }
@@ -277,23 +300,22 @@ function getBusinessHoursStatus() {
 
   return {
     isOpen,
+    riyadhDay,
+    todayHoursRange,
     currentClosingTime,
     nextOpenMessage
   };
 }
 
 function formatTimeDisplay(timeStr24, lang) {
-  const [h, m] = timeStr24.split(':').map(Number);
-  const suffix = h >= 12 ? (lang === 'ar' ? 'مساءً' : 'PM') : (lang === 'ar' ? 'صباحًا' : 'AM');
-  const h12 = h % 12 === 0 ? 12 : h % 12;
-  const minuteStr = m === 0 ? '' : ':' + (m < 10 ? '0' + m : m);
-  return `${h12}${minuteStr} ${suffix}`;
+  return formatTime12(timeStr24, lang);
 }
 
 /**
- * Update Business Hours UI Badge
+ * Update Business Hours UI Badge and Dynamic Schedule Modal
  */
 function updateBusinessHoursUI() {
+  const lang = AppState.currentLang;
   const status = getBusinessHoursStatus();
   const statusBadge = document.getElementById('statusBadgeContainer');
   const statusText = document.getElementById('statusText');
@@ -301,21 +323,64 @@ function updateBusinessHoursUI() {
   const statusPing = document.getElementById('statusPing');
   const statusDot = document.getElementById('statusDot');
 
-  if (!statusBadge || !statusText || !statusTime) return;
-
-  if (status.isOpen) {
-    statusText.textContent = TRANSLATIONS[AppState.currentLang].openNow;
-    statusText.className = 'text-emerald-700 font-bold';
-    statusTime.textContent = (AppState.currentLang === 'ar' ? `| حتى ${status.currentClosingTime}` : `| Until ${status.currentClosingTime}`);
-    if (statusPing) statusPing.className = 'animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75';
-    if (statusDot) statusDot.className = 'relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500';
-  } else {
-    statusText.textContent = TRANSLATIONS[AppState.currentLang].closedNow;
-    statusText.className = 'text-amber-700 font-bold';
-    statusTime.textContent = `| ${status.nextOpenMessage}`;
-    if (statusPing) statusPing.className = 'animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75';
-    if (statusDot) statusDot.className = 'relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-500';
+  if (statusText && statusTime) {
+    if (status.isOpen) {
+      statusText.textContent = TRANSLATIONS[lang].openNow;
+      statusText.className = 'text-emerald-700 font-bold whitespace-nowrap text-xs';
+      statusTime.textContent = `| ${status.todayHoursRange}`;
+      if (statusPing) statusPing.className = 'animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75';
+      if (statusDot) statusDot.className = 'relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500';
+    } else {
+      statusText.textContent = TRANSLATIONS[lang].closedNow;
+      statusText.className = 'text-amber-700 font-bold whitespace-nowrap text-xs';
+      statusTime.textContent = `| ${status.nextOpenMessage}`;
+      if (statusPing) statusPing.className = 'animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75';
+      if (statusDot) statusDot.className = 'relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-500';
+    }
   }
+
+  // Update schedule table inside modal
+  renderHoursScheduleModal(status.riyadhDay);
+}
+
+/**
+ * Render Weekly Schedule dynamically based on language
+ */
+function renderHoursScheduleModal(currentDayIndex) {
+  const container = document.getElementById('hoursScheduleTable');
+  if (!container) return;
+
+  const lang = AppState.currentLang;
+  const schedule = BUSINESS_CONFIG.hours.schedule;
+  // Standard Middle Eastern business week order: Saturday (6), Sunday (0), Monday (1), Tuesday (2), Wednesday (3), Thursday (4), Friday (5)
+  const displayDays = [6, 0, 1, 2, 3, 4, 5];
+
+  let html = '';
+  displayDays.forEach(dayIndex => {
+    const dayConfig = schedule[dayIndex];
+    if (!dayConfig) return;
+
+    const dayName = (dayConfig.name && dayConfig.name[lang]) ? dayConfig.name[lang] : (dayConfig.name && dayConfig.name.ar ? dayConfig.name.ar : '');
+    const isToday = (dayIndex === currentDayIndex);
+    const session = dayConfig.sessions && dayConfig.sessions[0];
+    const timeRange = session ? formatSessionRange(session, lang) : '';
+
+    const rowBg = isToday ? 'bg-brand-skyLight/60 px-2.5 py-2 rounded-xl border border-brand-sky/30 shadow-2xs' : 'py-2 border-b border-slate-100 px-1';
+    const dayNameClass = isToday ? 'font-bold text-brand-navy flex items-center gap-1.5' : 'font-bold text-slate-700';
+    const timeClass = isToday ? 'font-bold text-brand-navy font-latin' : 'font-semibold text-slate-600 font-latin';
+
+    html += `
+      <div class="flex items-center justify-between ${rowBg}">
+        <span class="${dayNameClass}">
+          <span>${dayName}</span>
+          ${isToday ? `<span class="text-[10px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded-full font-bold">${TRANSLATIONS[lang].todayBadge}</span>` : ''}
+        </span>
+        <span class="${timeClass}">${timeRange}</span>
+      </div>
+    `;
+  });
+
+  container.innerHTML = html;
 }
 
 /**

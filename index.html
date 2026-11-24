@@ -834,7 +834,7 @@
           </div>
           <div class="min-w-0">
             <h4 class="text-xs sm:text-sm font-black text-brand-navy leading-none truncate" id="hoursModalTitle" data-i18n="workingHoursTitle">ساعات العمل الرسمية</h4>
-            <span class="text-[10px] text-slate-400 font-latin block truncate mt-0.5">Asia/Riyadh Standard Time (UTC+3)</span>
+            <span class="text-[10px] text-slate-400 block truncate mt-0.5" data-i18n="hoursModalSubtitle">توقيت مكة المكرمة / الرياض (UTC+3)</span>
           </div>
         </div>
         <button onclick="closeHoursModal()" aria-label="إغلاق" class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-brand-red flex items-center justify-center text-xs sm:text-sm transition flex-shrink-0 ms-2">
@@ -842,38 +842,13 @@
         </button>
       </div>
 
-      <!-- Schedule Table -->
-      <div class="p-4 sm:p-5 text-xs space-y-2">
-        <div class="flex items-center justify-between py-1.5 border-b border-slate-100">
-          <span class="font-bold text-slate-700">السبت</span>
-          <span class="font-semibold text-slate-600 font-latin">08:00 AM – 10:00 PM</span>
-        </div>
-        <div class="flex items-center justify-between py-1.5 border-b border-slate-100">
-          <span class="font-bold text-slate-700">الأحد</span>
-          <span class="font-semibold text-slate-600 font-latin">08:00 AM – 10:00 PM</span>
-        </div>
-        <div class="flex items-center justify-between py-1.5 border-b border-slate-100">
-          <span class="font-bold text-slate-700">الإثنين</span>
-          <span class="font-semibold text-slate-600 font-latin">08:00 AM – 10:00 PM</span>
-        </div>
-        <div class="flex items-center justify-between py-1.5 border-b border-slate-100">
-          <span class="font-bold text-slate-700">الثلاثاء</span>
-          <span class="font-semibold text-slate-600 font-latin">08:00 AM – 10:00 PM</span>
-        </div>
-        <div class="flex items-center justify-between py-1.5 border-b border-slate-100">
-          <span class="font-bold text-slate-700">الأربعاء</span>
-          <span class="font-semibold text-slate-600 font-latin">08:00 AM – 10:00 PM</span>
-        </div>
-        <div class="flex items-center justify-between py-1.5 border-b border-slate-100">
-          <span class="font-bold text-slate-700">الخميس</span>
-          <span class="font-semibold text-slate-600 font-latin">08:00 AM – 10:00 PM</span>
-        </div>
-        <div class="flex items-center justify-between py-1.5 bg-brand-skyLight/40 px-2 rounded-lg">
-          <span class="font-bold text-brand-navy">الجمعة</span>
-          <span class="font-semibold text-brand-navy font-latin">04:00 PM – 10:00 PM</span>
+      <!-- Schedule Table (Dynamic bilingual rendering via renderHoursScheduleModal) -->
+      <div class="p-4 sm:p-5 text-xs">
+        <div id="hoursScheduleTable" class="space-y-1">
+          <!-- Populated dynamically by JavaScript -->
         </div>
 
-        <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] text-slate-400 text-center">
+        <div id="hoursModalFooter" class="mt-4 pt-3 border-t border-slate-100 text-[11px] text-slate-400 text-center" data-i18n="hoursModalFooter">
           ينبع - شركات أفراح الجزيرة • اتصال: 055 651 6712
         </div>
       </div>
